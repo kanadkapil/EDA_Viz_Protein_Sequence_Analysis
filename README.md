@@ -1,16 +1,93 @@
-# React + Vite
+# Protein Sequence Analysis EDA Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive Exploratory Data Analysis (EDA) dashboard built with React 19 and Vite. This application visualizes protein sequence data, structural properties, and functional classifications to bridge the specific "sequence-structure gap" in computational biology.
 
-Currently, two official plugins are available:
+## 🧬 Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Computational Prediction of Protein Functional Classes and Secondary Structures Using Deep Learning**
 
-## React Compiler
+Modern computational biology relies heavily on data-driven approaches. This project implements machine learning (ML) and deep learning (DL) frameworks to automate protein analysis. Specifically, it utilizes **Multinomial Naive Bayes (MNB)** for functional classification and **Bidirectional LSTM (BiLSTM)** networks for secondary structure prediction, achieving a validation Q3 accuracy of **81.53%**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Key Results
 
-## Expanding the ESLint configuration
+| Task                    | Model  | Metric                     | Value      |
+| :---------------------- | :----- | :------------------------- | :--------- |
+| **Secondary Structure** | BiLSTM | **Validation Q3 Accuracy** | **81.53%** |
+| **Functional Class**    | MNB    | **Overall Accuracy**       | **77.00%** |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- **Interactive Dashboard**: Central hub with navigation to all analysis reports and a comprehensive project summary.
+- **Intersection Analysis**:
+  - Dynamically parses Pandas Profiling HTML reports.
+  - Visualizes "Secondary Structure (sst8)" distributions using interactive charts.
+  - Displays detailed breakdown tables with percentages.
+  - Includes a "Raw Sample Data" viewer.
+- **Categorical & Numerical Reports**: Dedicated views for Base Analysis, Secondary Structure, and Sequence Analysis (amenable for future expansion).
+- **Responsive Design**: Built with Tailwind CSS v4 for a seamless experience across devices.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Visualization**: [Plotly.js](https://plotly.com/javascript/) (via `react-plotly.js`)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Routing**: [React Router v7](https://reactrouter.com/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+1.  **Clone the repository**
+
+    ```bash
+    git clone https://github.com/yourusername/eda-protein-analysis.git
+    cd eda-protein-analysis
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open in Browser**
+    Navigate to `http://localhost:5173` to view the dashboard.
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/       # Reusable UI components (PlotContainer, ProjectSummary)
+├── layouts/          # Layout wrappers (MainLayout)
+├── pages/            # Individual Report Pages
+│   ├── BaseReport.jsx
+│   ├── IntersectReport.jsx  <-- Key analysis page
+│   ├── StructureReport.jsx
+│   ├── SequenceReport.jsx
+│   └── ...
+├── utils/            # Helper scripts (intersectReportParser.js)
+└── App.jsx           # Main application routing
+public/
+└── intersectr.html   # Source data file (Pandas Profiling Report)
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
