@@ -47,7 +47,7 @@ Modern computational biology relies heavily on data-driven approaches. This proj
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/yourusername/eda-protein-analysis.git
+    git clone https://github.com/kanadkapil/eda-protein-analysis.git
     cd eda-protein-analysis
     ```
 
@@ -88,6 +88,6 @@ public/
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## 📄 Developer
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Developed by [Kanad Kapil](https://github.com/kanadkapil).

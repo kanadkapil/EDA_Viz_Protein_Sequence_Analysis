@@ -31,6 +31,19 @@ const ProjectSummary = () => {
         </div>
       </section>
 
+      {/* Project Video */}
+      <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">2. Project Walkthrough</h2>
+        <div className="relative pt-[56.25%] bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
+            <iframe 
+                src="https://drive.google.com/file/d/12bnaV6HgCUVmPDS-LXcb5NdQX-lmzxjO/preview" 
+                className="absolute top-0 left-0 w-full h-full"
+                allow="autoplay"
+                title="Project Walkthrough Video"
+            ></iframe>
+        </div>
+      </section>
+
       {/* Introduction */}
       <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">3. Introduction</h2>
@@ -205,7 +218,7 @@ const ProjectSummary = () => {
             The gap between BiLSTM and the AdaBoost baseline (19%) confirms the necessity of preserving temporal dependencies in protein data.
         </p>
         <p className="text-gray-700 leading-relaxed">
-            Despite label ambiguity in >55k instances, the pipeline is reliable and scalable. Future work will investigate <strong>Transformer models</strong> (e.g., ProtTrans) to further enhance accuracy.
+            Despite label ambiguity in "'>'55k instances, the pipeline is reliable and scalable. Future work will investigate <strong>Transformer models</strong> (e.g., ProtTrans) to further enhance accuracy.
         </p>
       </section>
 
