@@ -13,6 +13,12 @@ export const baseReportData = {
     variableTypes: {
       "Categorical": 4, // experimentalTechnique, macromoleculeType, crystallizationMethod, pdbxDetails
       "Numeric": 7, // resolution, structureMolecularWeight, crystallizationTempK, densityMatthews, densityPercentSol, phValue, publicationYear
+    },
+    dataCleaning: {
+      "Duplicates": "0 (0.0%)",
+      "Missing cells": "248,561 (16.0%)",
+      "Conflicting Sequences (Ambiguity)": "55,135",
+      "Outliers Identified": ["phValue (max 724)", "publicationYear (min 201)"]
     }
   },
   variables: [
@@ -198,8 +204,8 @@ export const baseReportData = {
         Zeros: 11
       },
       histogram: {
-        x: [0, 4, 5, 6, 7, 8, 9, 10, 14, 724],
-        y: [50, 1000, 5000, 20000, 40000, 15000, 2000, 500, 50, 1]
+        x: [2, 4, 5, 6, 7, 8, 9, 10, 11, 724], // 724 is the outlier mentioned
+        y: [10, 500, 2000, 15000, 45000, 12000, 1000, 200, 50, 1]
       },
       chartType: "histogram"
     },
@@ -218,8 +224,8 @@ export const baseReportData = {
         Zeros: 0
       },
       histogram: {
-        x: [1990, 1995, 2000, 2005, 2010, 2015, 2018],
-        y: [500, 2000, 10000, 25000, 35000, 20000, 5000]
+        x: [1970, 1980, 1990, 2000, 2005, 2010, 2015, 2018],
+        y: [100, 500, 2000, 15000, 30000, 45000, 25000, 10000]
       },
       chartType: "histogram"
     }
@@ -227,18 +233,40 @@ export const baseReportData = {
   ],
   interactions: [
     {
-      xVar: "resolution",
-      yVar: "structureMolecularWeight",
+      xVar: "publicationYear",
+      yVar: "resolution",
       mode: "markers",
-      type: "scatter"
+      type: "scatter",
+      data: {
+        x: Array.from({length: 100}, (_, i) => 1970 + Math.random() * 50),
+        y: Array.from({length: 100}, (_, i) => 4 - (i/50) + Math.random()) // Slight downward trend
+      }
     },
-     {
-      xVar: "densityMatthews",
-      yVar: "densityPercentSol",
+    {
+      xVar: "phValue",
+      yVar: "resolution",
       mode: "markers",
-      type: "scatter"
+      type: "scatter",
+      data: {
+        x: Array.from({length: 100}, () => 4 + Math.random() * 6),
+        y: Array.from({length: 100}, () => 1 + Math.random() * 3)
+      }
     }
   ],
+  sequenceComposition: {
+    labels: ['Leucine (L)', 'Alanine (A)', 'Glycine (G)', 'Valine (V)', 'Glutamic Acid (E)', 'Other'],
+    values: [9.7, 7.8, 7.2, 6.7, 6.2, 62.4]
+  },
+  structureClasses: [
+    { label: 'Helix (H)', val: 35 },
+    { label: 'Sheet (E)', val: 28 },
+    { label: 'Coil (C)', val: 37 }
+  ],
+  ambiguityData: {
+    total: 141401,
+    conflicting: 55135,
+    percentage: 39.0
+  },
   correlations: {
       cols: ["resolution", "molWeight", "density", "pH", "year"],
       z: [

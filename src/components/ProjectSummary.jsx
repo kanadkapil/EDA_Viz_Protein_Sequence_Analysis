@@ -101,15 +101,25 @@ const ProjectSummary = () => {
                     <ul className="list-disc list-inside space-y-2 text-gray-600">
                         <li><strong>Cleaning:</strong> Corrected erroneous entries in <code>phValue</code> and <code>publicationYear</code>.</li>
                         <li><strong>Missing Data:</strong> Implemented <strong>KNN Imputation</strong> (k=5) using Label Encoding.</li>
-                        <li><strong>Label Ambiguity:</strong> Identified <strong>55,135 proteins</strong> with identical sequences but conflicting structures.</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">4.3 Feature Engineering</h3>
-                    <ul className="list-disc list-inside space-y-2 text-gray-600">
-                        <li><strong>N-gram Vectorization:</strong> 4-gram Count Vectorizer for function classification.</li>
-                        <li><strong>Sliding Window:</strong> Window size <em>n=3</em> for secondary structure (trigrams).</li>
-                    </ul>
+                    <h3 className="text-lg font-bold text-orange-700 mb-2">4.3 The "Ambiguity" Discovery</h3>
+                    <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+                        <p className="text-sm text-gray-700 mb-3">
+                            A critical finding during EDA revealed a significant "noise floor" for prediction accuracy:
+                        </p>
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-bold text-orange-800 uppercase">Conflicting Sequences</span>
+                            <span className="text-xl font-bold text-orange-900">55,135</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div className="bg-orange-500 h-2 rounded-full" style={{ width: '39%' }}></div>
+                        </div>
+                        <p className="text-[10px] text-gray-500 italic">
+                            ~39% of unique sequences in the dataset are associated with multiple, conflicting secondary structure assignments in the PDB.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,7 +228,7 @@ const ProjectSummary = () => {
             The gap between BiLSTM and the AdaBoost baseline (19%) confirms the necessity of preserving temporal dependencies in protein data.
         </p>
         <p className="text-gray-700 leading-relaxed">
-            Despite label ambiguity in "'>'55k instances, the pipeline is reliable and scalable. Future work will investigate <strong>Transformer models</strong> (e.g., ProtTrans) to further enhance accuracy.
+            Despite label ambiguity in &gt;55k instances, the pipeline is reliable and scalable. Future work will investigate <strong>Transformer models</strong> (e.g., ProtTrans) to further enhance accuracy.
         </p>
       </section>
 

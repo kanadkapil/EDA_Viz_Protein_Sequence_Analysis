@@ -27,31 +27,47 @@ const BaseReport = () => {
   ];
 
   const renderOverview = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Dataset Statistics</h3>
-        <div className="space-y-3">
-          {Object.entries(baseReportData.overview.datasetStatistics).map(([key, val]) => (
-            <div key={key} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
-              <span className="text-gray-600">{key}</span>
-              <span className="font-medium text-gray-900">{val}</span>
-            </div>
-          ))}
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Dataset Statistics</h3>
+          <div className="space-y-3">
+            {Object.entries(baseReportData.overview.datasetStatistics).map(([key, val]) => (
+              <div key={key} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
+                <span className="text-gray-600">{key}</span>
+                <span className="font-medium text-gray-900">{val}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Variable Types</h3>
+          <div className="space-y-3">
+             {Object.entries(baseReportData.overview.variableTypes).map(([key, val]) => (
+              <div key={key} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
+                <span className="text-gray-600">{key}</span>
+                <span className="font-medium text-gray-900">{val}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Variable Types</h3>
-        <div className="space-y-3">
-           {Object.entries(baseReportData.overview.variableTypes).map(([key, val]) => (
-            <div key={key} className="flex justify-between border-b border-gray-50 pb-2 last:border-0">
-              <span className="text-gray-600">{key}</span>
-              <span className="font-medium text-gray-900">{val}</span>
-            </div>
-          ))}
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Cleaning & Quality</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {Object.entries(baseReportData.overview.dataCleaning).map(([key, val]) => (
+                <div key={key} className="p-4 bg-orange-50 rounded-lg border border-orange-100">
+                    <span className="block text-xs font-bold text-orange-600 uppercase mb-1">{key}</span>
+                    <span className="text-lg font-bold text-gray-900">
+                        {Array.isArray(val) ? val.join(", ") : val}
+                    </span>
+                </div>
+            ))}
         </div>
         <div className="mt-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-700">
            <Info className="inline w-4 h-4 mr-1 relative -top-0.5" />
-           The dataset contains <strong>{baseReportData.overview.datasetStatistics["Number of variables"]}</strong> variables and <strong>{baseReportData.overview.datasetStatistics["Number of observations"]}</strong> observations.
+           The cleaning phase corrected <strong>outliers</strong> in pH and publication year, and identified <strong>55,135 conflicting sequences</strong>.
         </div>
       </div>
     </div>
@@ -151,20 +167,27 @@ const BaseReport = () => {
   const renderInteractions = () => (
      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Pairwise Interactions</h3>
-        <p className="text-sm text-gray-500 mb-6">Explore the relationship between pairs of variables. Select variables to visualize.</p>
+        <p className="text-sm text-gray-500 mb-6 font-medium italic">Visualization of specific relations identified in the PDF analysis.</p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
            {baseReportData.interactions.map((interaction, idx) => (
               <div key={idx}>
-                 <h4 className="text-sm font-medium text-gray-700 mb-2">{interaction.xVar} vs {interaction.yVar}</h4>
+                 <h4 className="text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide border-l-4 border-blue-500 pl-2">
+                    {interaction.xVar} vs {interaction.yVar}
+                 </h4>
                  <PlotContainer 
                     data={[{
-                       x: Array.from({length: 50}, () => Math.random() * 100), // Mock scatter data
-                       y: Array.from({length: 50}, () => Math.random() * 100),
+                       x: interaction.data.x,
+                       y: interaction.data.y,
                        mode: interaction.mode,
                        type: interaction.type,
-                       marker: { color: '#ef4444', size: 8, opacity: 0.6 }
+                       marker: { color: idx === 0 ? '#3b82f6' : '#ef4444', size: 6, opacity: 0.5 }
                     }]}
-                    layout={{ height: 300, margin: { l: 40, r: 20, t: 20, b: 30 } }}
+                    layout={{ 
+                        height: 350, 
+                        margin: { l: 40, r: 20, t: 20, b: 40 },
+                        xaxis: { title: interaction.xVar },
+                        yaxis: { title: interaction.yVar }
+                    }}
                  />
               </div>
            ))}
