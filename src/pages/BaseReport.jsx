@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PlotContainer from '../components/PlotContainer';
+import MathFormula from '../components/MathFormula';
 import { baseReportData } from '../data/mockBaseReportData';
 import { 
   BarChart2, 
@@ -197,19 +198,49 @@ const BaseReport = () => {
 
   const renderCorrelations = () => (
      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-       <h3 className="text-lg font-semibold text-gray-800 mb-4">Correlation Matrix</h3>
-       <div className="flex justify-center">
-          <PlotContainer 
-             data={[{
-                z: baseReportData.correlations.z,
-                x: baseReportData.correlations.cols,
-                y: baseReportData.correlations.cols,
-                type: 'heatmap',
-                colorscale: 'RdBu',
-                zmin: -1, zmax: 1
-             }]}
-             layout={{ height: 500, width: 600 }}
-          />
+       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+             <h3 className="text-lg font-semibold text-gray-800 mb-4">Correlation Matrix</h3>
+             <div className="flex justify-center">
+                <PlotContainer 
+                   data={[{
+                      z: baseReportData.correlations.z,
+                      x: baseReportData.correlations.cols,
+                      y: baseReportData.correlations.cols,
+                      type: 'heatmap',
+                      colorscale: 'RdBu',
+                      zmin: -1, zmax: 1
+                   }]}
+                   layout={{ height: 500, width: 600 }}
+                />
+             </div>
+          </div>
+          <div className="space-y-6">
+             <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <Grid className="w-5 h-5 mr-2 text-blue-500" />
+                Correlation Theory
+             </h3>
+             <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <h4 className="text-sm font-bold text-blue-800 mb-2">Pearson Correlation ($r$)</h4>
+                <p className="text-xs text-blue-700 leading-relaxed mb-3">
+                   Measures <strong>linear</strong> relationships between continuous variables (e.g., Resolution vs Weight).
+                </p>
+                <MathFormula 
+                   formula="r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}"
+                   className="bg-white border-blue-200"
+                />
+             </div>
+             <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-sm font-bold text-gray-800 mb-2">Spearman Rank ($\rho$)</h4>
+                <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                   Measures <strong>monotonic</strong> relationships (non-linear). More robust to outliers like our pH values.
+                </p>
+                <MathFormula 
+                   formula="\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}"
+                   className="bg-white border-gray-200"
+                />
+             </div>
+          </div>
        </div>
      </div>
   );

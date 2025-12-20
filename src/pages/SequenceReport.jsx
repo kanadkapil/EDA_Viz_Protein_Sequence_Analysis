@@ -1,5 +1,6 @@
 import React from 'react';
 import PlotContainer from '../components/PlotContainer';
+import MathFormula from '../components/MathFormula';
 import { baseReportData } from '../data/mockBaseReportData';
 import { Dna, AlignLeft, BarChart2, Info } from 'lucide-react';
 
@@ -50,6 +51,17 @@ const SequenceReport = () => {
              <Info className="inline w-3 h-3 mr-1" />
              Leucine (L) and Alanine (A) are the most prevalent residues in these globular proteins.
            </div>
+
+           <div className="mt-6">
+              <h4 className="text-sm font-semibold text-gray-700 mb-2">Sequence Complexity (Shannon Entropy)</h4>
+              <p className="text-xs text-gray-500 mb-3">
+                 Entropy $H$ quantifies the diversity of amino acids at each position. Higher entropy indicates lower conservation.
+              </p>
+              <MathFormula 
+                 formula="H = -\sum_{i=1}^{20} p_i \log_2(p_i)"
+                 className="bg-white border-gray-200"
+              />
+           </div>
         </div>
 
         {/* Length Distribution */}
@@ -80,16 +92,30 @@ const SequenceReport = () => {
         </div>
       </div>
       
-      {/* Motifs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-         <h3 className="text-lg font-semibold text-gray-800 mb-4">Identified Sequence Motifs</h3>
-         <p className="text-sm text-gray-500 mb-4">Highly conserved $n$-grams used for functional classification (MNB Model).</p>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {['L-A-G-V', 'V-V-I-L', 'G-G-S-G', 'L-L-L-L', 'A-A-G-V'].map((motif, i) => (
-               <div key={i} className="p-4 bg-gray-50 rounded border border-gray-200 font-mono text-center tracking-widest text-lg font-bold text-red-800">
-                  {motif}
-               </div>
-            ))}
+      {/* Motifs & N-gram Theory */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+         <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Identified Sequence Motifs</h3>
+            <p className="text-sm text-gray-500 mb-4">Highly conserved $n$-grams used for functional classification (MNB Model).</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+               {['L-A-G-V', 'V-V-I-L', 'G-G-S-G', 'L-L-L-L', 'A-A-G-V'].map((motif, i) => (
+                  <div key={i} className="p-4 bg-gray-50 rounded border border-gray-200 font-mono text-center tracking-widest text-lg font-bold text-red-800">
+                     {motif}
+                  </div>
+               ))}
+            </div>
+         </div>
+         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">N-gram (k-mer) Theory</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
+               Proteins are represented as overlapping sub-sequences of length $k$. For $k=4$, the sequence <code>LAGVVI</code> is broken into:
+            </p>
+            <div className="mt-3 p-3 bg-gray-50 rounded font-mono text-xs text-blue-700 border border-blue-100">
+               ['LAGV', 'AGVV', 'GVVI']
+            </div>
+            <p className="text-sm text-gray-600 mt-4 leading-relaxed">
+               This captures local structural patterns (motifs) that are often conserved across evolution, allowing the <strong>Multinomial Naive Bayes</strong> classifier to identify protein families.
+            </p>
          </div>
       </div>
     </div>

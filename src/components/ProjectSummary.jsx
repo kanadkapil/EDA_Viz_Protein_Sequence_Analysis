@@ -1,4 +1,5 @@
 import React from 'react';
+import MathFormula from './MathFormula';
 
 const ProjectSummary = () => {
   return (
@@ -220,9 +221,63 @@ const ProjectSummary = () => {
         </div>
       </section>
 
+      {/* Technical Implementation */}
+      <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">7. Technical Implementation</h2>
+        
+        <div className="space-y-8">
+            <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">7.1 BiLSTM Architecture (Keras)</h3>
+                <div className="bg-gray-900 rounded-lg p-5 overflow-x-auto">
+                    <pre className="text-sm text-gray-300 font-mono">
+{`model = Sequential([
+    # Input sequence (trigrams)
+    layers.InputLayer(input_shape=(None, 7000)), 
+    
+    # Contextual Modeling
+    layers.Bidirectional(layers.LSTM(128, return_sequences=True)),
+    layers.Dropout(0.3),
+    layers.Bidirectional(layers.LSTM(64, return_sequences=True)),
+    layers.Dropout(0.3),
+    
+    # Time-Distributed output for residue-wise Q3
+    layers.TimeDistributed(layers.Dense(3, activation='softmax'))
+])`}
+                    </pre>
+                </div>
+            </div>
+
+            <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">7.2 N-gram Vectorization & Classification</h3>
+                <div className="bg-gray-900 rounded-lg p-5 overflow-x-auto">
+                    <pre className="text-sm text-gray-300 font-mono">
+{`# Multi-gram processing for sequence motifs
+vectorizer = CountVectorizer(ngram_range=(4, 4), analyzer='char')
+X = vectorizer.fit_transform(sequences)
+
+# Functional Classification
+clf = MultinomialNB(alpha=0.1)
+clf.fit(X_train, y_train)`}
+                    </pre>
+                </div>
+            </div>
+
+            <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">7.3 Evaluation Metric: Q3 Accuracy</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                    The Q3 accuracy measures the percentage of residues correctly predicted for the three states (Helix, Sheet, Coil).
+                </p>
+                <MathFormula 
+                    formula="Q_3 = \frac{\sum_{i \in \{H, E, C\}} \text{Correct}_i}{\text{Total Residues}} \times 100\%"
+                    className="bg-blue-50 border-blue-100"
+                />
+            </div>
+        </div>
+      </section>
+
       {/* Discussion & Conclusion */}
       <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Discussion & Conclusion</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">8. Discussion & Conclusion</h2>
         <p className="text-gray-700 mb-4 leading-relaxed">
             The project demonstrates that <strong>sequence-only prediction</strong> using BiLSTMs can reach ~82% accuracy without relying on expensive evolutionary profiles. 
             The gap between BiLSTM and the AdaBoost baseline (19%) confirms the necessity of preserving temporal dependencies in protein data.
