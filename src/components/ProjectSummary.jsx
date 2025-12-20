@@ -1,5 +1,6 @@
 import React from 'react';
 import MathFormula from './MathFormula';
+import { Activity, Info } from 'lucide-react';
 
 const ProjectSummary = () => {
   return (
@@ -275,9 +276,55 @@ clf.fit(X_train, y_train)`}
         </div>
       </section>
 
+      {/* Practical Applications */}
+      <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">8. Practical Applications</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-4 bg-purple-50 rounded-lg border border-purple-100">
+                <h3 className="font-bold text-purple-800 mb-2 flex items-center">
+                   <Activity className="w-4 h-4 mr-2" />
+                   Drug Discovery
+                </h3>
+                <p className="text-sm text-purple-700 leading-relaxed">
+                   Identifying secondary structures helps in locating <strong>active sites</strong> and pocket volumes for small molecule docking, accelerating the early stages of lead optimization.
+                </p>
+            </div>
+            <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                <h3 className="font-bold text-green-800 mb-2 flex items-center">
+                   <Info className="w-4 h-4 mr-2" />
+                   Enzyme Engineering
+                </h3>
+                <p className="text-sm text-green-700 leading-relaxed">
+                   Understanding the "noise floor" (structural ambiguity) allows protein engineers to design more stable scaffolds by avoiding sequence motifs with multiple low-energy states.
+                </p>
+            </div>
+        </div>
+      </section>
+
+      {/* Future Roadmap */}
+      <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">9. Future Roadmap</h2>
+        <div className="space-y-4">
+            <div className="flex items-start space-x-4">
+                <div className="bg-blue-100 text-blue-700 p-2 rounded-lg font-bold">1</div>
+                <div>
+                   <h4 className="font-bold text-gray-900">Transformer Integration (ProtTrans)</h4>
+                   <p className="text-sm text-gray-600">Replacing BiLSTM with Attention mechanisms to capture long-range interactions better than recurrent layers.</p>
+                </div>
+            </div>
+            <div className="flex items-start space-x-4">
+                <div className="bg-blue-100 text-blue-700 p-2 rounded-lg font-bold">2</div>
+                <div>
+                   <h4 className="font-bold text-gray-900">AlphaFold/RoseTTAFold Benchmarking</h4>
+                   <p className="text-sm text-gray-600">Validating the model's 3-state output against high-fidelity 3D predictions for consensus modeling.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+
       {/* Discussion & Conclusion */}
       <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">8. Discussion & Conclusion</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">10. Discussion & Conclusion</h2>
         <p className="text-gray-700 mb-4 leading-relaxed">
             The project demonstrates that <strong>sequence-only prediction</strong> using BiLSTMs can reach ~82% accuracy without relying on expensive evolutionary profiles. 
             The gap between BiLSTM and the AdaBoost baseline (19%) confirms the necessity of preserving temporal dependencies in protein data.

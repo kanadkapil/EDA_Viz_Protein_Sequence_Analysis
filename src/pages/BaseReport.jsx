@@ -322,6 +322,16 @@ const BaseReport = () => {
          {activeTab === 'missing' && renderMissing()}
          {activeTab === 'sample' && renderSample()}
       </div>
+      {/* Quick Insight */}
+      <div className="bg-orange-50 border border-orange-100 rounded-xl p-6 mt-6">
+         <h3 className="text-lg font-semibold text-orange-900 mb-2 flex items-center">
+            <Info className="w-5 h-5 mr-2" />
+            Executive Insight: Data Integrity
+         </h3>
+         <p className="text-sm text-orange-800 leading-relaxed">
+            The identification of <strong>55,135 conflicting sequences</strong> serves as a critical "noise floor" for any predictive model. This discovery highlights the inherent challenge in biological datasets where the same sequence can adopt multiple conformations. Cleaning outliers like the <strong>pH 724</strong> entry was essential to avoid skewing thermodynamic stability estimates.
+         </p>
+      </div>
     </div>
   );
 };

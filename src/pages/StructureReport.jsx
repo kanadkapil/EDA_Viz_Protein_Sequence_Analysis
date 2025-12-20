@@ -139,6 +139,16 @@ const StructureReport = () => {
             </div>
          </div>
       </div>
+      {/* Quick Insight */}
+      <div className="bg-green-50 border border-green-100 rounded-xl p-6 mt-6">
+         <h3 className="text-lg font-semibold text-green-900 mb-2 flex items-center">
+            <Info className="w-5 h-5 mr-2" />
+            Executive Insight: Structural Proxies
+         </h3>
+         <p className="text-sm text-green-800 leading-relaxed">
+            The <strong>8Å threshold</strong> for contacts is a standard in structural biology, effectively capturing the physical proximity required for hydrogen bonding and van der Waals interactions. Achieving 81.53% Q3 accuracy on secondary structure is a significant milestone, as it provides a reliable "skeleton" for full 3D fold reconstruction.
+         </p>
+      </div>
     </div>
   );
 };
