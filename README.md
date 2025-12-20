@@ -1,12 +1,12 @@
-# Protein Sequence Analysis EDA Dashboard
+# Protein Sequence Analysis EDA Dashboard 🧬
 
-A modern, interactive Exploratory Data Analysis (EDA) dashboard built with React 19 and Vite. This application visualizes protein sequence data, structural properties, and functional classifications to bridge the specific "sequence-structure gap" in computational biology.
+A modern, high-fidelity Exploratory Data Analysis (EDA) dashboard built with **React 19**, **Vite**, and **Tailwind CSS v4**. This application is specifically tailored for protein structural bioinformatics, providing interactive visualizations of sequence data, structural properties, and deep learning model performances.
 
-## 🧬 Project Overview
+## 🚀 Project Overview
 
 **Computational Prediction of Protein Functional Classes and Secondary Structures Using Deep Learning**
 
-Modern computational biology relies heavily on data-driven approaches. This project implements machine learning (ML) and deep learning (DL) frameworks to automate protein analysis. Specifically, it utilizes **Multinomial Naive Bayes (MNB)** for functional classification and **Bidirectional LSTM (BiLSTM)** networks for secondary structure prediction, achieving a validation Q3 accuracy of **81.53%**.
+This project bridges the "sequence-structure gap" by automating the analysis of protein data. It leverages **Multinomial Naive Bayes (MNB)** for functional classification and **Bidirectional LSTM (BiLSTM)** networks for residue-wise secondary structure prediction.
 
 ### Key Results
 
@@ -15,79 +15,76 @@ Modern computational biology relies heavily on data-driven approaches. This proj
 | **Secondary Structure** | BiLSTM | **Validation Q3 Accuracy** | **81.53%** |
 | **Functional Class**    | MNB    | **Overall Accuracy**       | **77.00%** |
 
-## ✨ Features
+---
 
-- **Interactive Dashboard**: Central hub with navigation to all analysis reports and a comprehensive project summary.
-- **Intersection Analysis**:
-  - Dynamically parses Pandas Profiling HTML reports.
-  - Visualizes "Secondary Structure (sst8)" distributions using interactive charts.
-  - Displays detailed breakdown tables with percentages.
-  - Includes a "Raw Sample Data" viewer.
-- **Categorical & Numerical Reports**: Dedicated views for Base Analysis, Secondary Structure, and Sequence Analysis (amenable for future expansion).
-- **Responsive Design**: Built with Tailwind CSS v4 for a seamless experience across devices.
+## ✨ Enhanced Features
+
+- **Executive Insights**: Dedicated business-level summaries for **Drug Discovery** and **Enzyme Engineering** applications.
+- **Structural Ambiguity Analysis**: Visualized discovery of **55,135 conflicting sequences** (~39% of unique data), establishing a critical "noise floor" for prediction metrics.
+- **Technical Implementation**: Live code snippets for model architectures (Keras) and preprocessing logic (N-grams).
+- **Theoretical Background**:
+  - **Sequence Analysis**: Shannon Entropy ($H$) and k-mer theory.
+  - **Structure Analysis**: Residue-Residue Contact Map definitions ($8\text{Å}$ threshold) and DSSP 8-to-3 state mapping.
+  - **Core Statistics**: Pearson ($r$) and Spearman ($\rho$) correlation mathematical definitions.
+- **Realistic Data Relations**: Interactive scatter plots showing the improvement of **Resolution over Publication Year** and **pH vs. Resolution** trends.
+- **Quick Insights**: Color-coded executive notes on every report page providing immediate technical context.
+
+---
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [React 19](https://react.dev/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Visualization**: [Plotly.js](https://plotly.com/javascript/) (via `react-plotly.js`)
+- **Visualization**: [Plotly.js](https://plotly.com/javascript/)
+- **Math Rendering**: [MathJax](https://www.mathjax.org/) (via `better-react-mathjax`)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Routing**: [React Router v7](https://reactrouter.com/)
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18+ recommended)
+- Node.js (v18+)
 - npm or yarn
 
-### Installation
+### Installation & Run
 
-1.  **Clone the repository**
+1. **Clone & Install**
 
-    ```bash
-    git clone https://github.com/kanadkapil/eda-protein-analysis.git
-    cd eda-protein-analysis
-    ```
+   ```bash
+   git clone https://github.com/kanadkapil/eda-protein-analysis.git
+   cd eda-protein-analysis
+   npm install
+   ```
 
-2.  **Install dependencies**
+2. **Development Mode**
+   ```bash
+   npm run dev
+   ```
+   Navigate to `http://localhost:5173`.
 
-    ```bash
-    npm install
-    ```
-
-3.  **Start the development server**
-
-    ```bash
-    npm run dev
-    ```
-
-4.  **Open in Browser**
-    Navigate to `http://localhost:5173` to view the dashboard.
+---
 
 ## 📂 Project Structure
 
 ```text
 src/
-├── components/       # Reusable UI components (PlotContainer, ProjectSummary)
-├── layouts/          # Layout wrappers (MainLayout)
-├── pages/            # Individual Report Pages
-│   ├── BaseReport.jsx
-│   ├── IntersectReport.jsx  <-- Key analysis page
-│   ├── StructureReport.jsx
-│   ├── SequenceReport.jsx
-│   └── ...
-├── utils/            # Helper scripts (intersectReportParser.js)
+├── components/       # Reusable UI (PlotContainer, ProjectSummary, MathFormula)
+├── data/             # Mock statistics and datasets (mockBaseReportData.js)
+├── layouts/          # Responsive layout wrappers
+├── pages/            # Feature-specific report pages
+│   ├── BaseReport.jsx      # Overview & Data Cleaning
+│   ├── IntersectReport.jsx # Secondary structure distributions
+│   ├── StructureReport.jsx # Contact Maps & Stability
+│   └── SequenceReport.jsx  # AA Composition & Motifs
 └── App.jsx           # Main application routing
-public/
-└── intersectr.html   # Source data file (Pandas Profiling Report)
 ```
 
-## 🤝 Contributing
+---
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 🤝 Developer
 
-## 📄 Developer
-
-Developed by [Kanad Kapil](https://github.com/kanadkapil).
+Developed with ❤️ by [Kanad Kapil](https://github.com/kanadkapil).
